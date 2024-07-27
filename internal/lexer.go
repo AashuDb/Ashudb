@@ -187,16 +187,18 @@ func lexCharacterDelimited(source string, ic Cursor, delimiter byte) (*Token, Cu
 		if c == delimiter {
 			// SQL escapes are via double characters, not backslash.
 			if cur.Pointer+1 >= uint(len(source)) || source[cur.Pointer+1] != delimiter {
+				cur.Pointer++
 				return &Token{
 					Value: string(value),
 					Loc:   ic.Loc,
 					Kind:  StringKind,
 				}, cur, true
-			} else {
-				value = append(value, delimiter)
-				cur.Pointer++
-				cur.Loc.Col++
 			}
+			// else {
+			// 	value = append(value, delimiter)
+			// 	cur.Pointer++
+			// 	cur.Loc.Col++
+			// }
 		}
 
 		value = append(value, c)

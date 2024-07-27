@@ -193,12 +193,11 @@ func lexCharacterDelimited(source string, ic Cursor, delimiter byte) (*Token, Cu
 					Loc:   ic.Loc,
 					Kind:  StringKind,
 				}, cur, true
+			} else {
+				value = append(value, delimiter)
+				cur.Pointer++
+				cur.Loc.Col++
 			}
-			// else {
-			// 	value = append(value, delimiter)
-			// 	cur.Pointer++
-			// 	cur.Loc.Col++
-			// }
 		}
 
 		value = append(value, c)

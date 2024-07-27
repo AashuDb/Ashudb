@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strings"
 
 	ashudb "github.com/aashudb/ashudb/internal"
@@ -12,11 +10,12 @@ import (
 func main() {
 	mb := ashudb.NewMemoryBackend()
 
-	reader := bufio.NewReader(os.Stdin)
+	// reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Welcome to AshuDB.")
 	for {
 		fmt.Print("# ")
-		text, _ := reader.ReadString('\n')
+		// text, _ := reader.ReadString('\n')
+		text := "INSERT 'a '' b'"
 		text = strings.Replace(text, "\n", "", -1)
 
 		ast, err := ashudb.Parse(text)

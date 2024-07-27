@@ -30,7 +30,7 @@ jobs:
           out-file-path: './build/'
 
       - name: Build
-        run: CGO_ENABLED=1 ./build/release . --perm 777 -c tar.gz --extra-arches --output build/output
+        run: ./build/release . --perm 777 -c tar.gz --extra-arches --cgo --output build/output
 
       - name: Upload assets
         uses: softprops/action-gh-release@v1
